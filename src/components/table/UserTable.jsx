@@ -2,8 +2,10 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { deleteExistingUser } from '../../services/UserApi';
 
 const UserTable = ({ data }) => {
+
     return (
         <TableContainer component={Paper} elevation={3} style={{ width: '80%', margin: '20px auto' }}>
             <Table style={{ width: '100%' }} aria-label="simple table">
@@ -23,9 +25,9 @@ const UserTable = ({ data }) => {
                                 <TableCell>{item.email}</TableCell>
                                 <TableCell>{item.phoneNumber}</TableCell>
                                 <TableCell style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                                    <Link to={`/view/${1}`} style={{ textDecoration: 'none', color: 'green' }}>View</Link>
-                                    <Link to={`/update/${1}`} style={{ textDecoration: 'none', color: 'blue' }}>Update</Link>
-                                    <Link to={`/delete/${2}`} style={{ textDecoration: 'none', color: 'red' }}>Delete</Link>
+                                    <Link to={`/view/${item.id}`} style={{ textDecoration: 'none', color: 'green' }}>View</Link>
+                                    <Link to={`/update/${item.id}`} style={{ textDecoration: 'none', color: 'blue' }}>Update</Link>
+                                    <Link onClick={() => deleteExistingUser(item.id)} style={{ textDecoration: 'none', color: 'red' }}>Delete</Link>
                                 </TableCell>
                             </TableRow>
                         ))

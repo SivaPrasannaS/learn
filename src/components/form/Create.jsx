@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { addNewUser } from '../../services/UserApi';
 
 const Create = () => {
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         name: "",
@@ -13,8 +15,8 @@ const Create = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(formData);
         addNewUser(formData);
+        navigate('/');
     }
 
     return (
