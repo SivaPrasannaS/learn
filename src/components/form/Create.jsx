@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { addNewUser } from '../../services/UserApi';
 
 const Create = () => {
 
@@ -13,6 +14,7 @@ const Create = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
+        addNewUser(formData);
     }
 
     return (
@@ -32,7 +34,7 @@ const Create = () => {
                         <label htmlFor="phoneNumber">Phone Number</label>
                         <input type="text" name="phoneNumber" className='form-control' placeholder='Enter phone number' onChange={(event) => setFormData({ ...formData, phoneNumber: event.target.value })} />
                     </div>
-                    <Button variant="contained">Add user</Button>
+                    <Button variant="contained" type='submit'>Add user</Button>
                     <Link className='btn btn-primary ms-3' to={`/`}>Back</Link>
                 </form>
             </div>
